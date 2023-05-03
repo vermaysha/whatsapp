@@ -28,7 +28,6 @@
     "name": "Ashary Vermaysha",
     "email": "vermaysha@gmail.com"
   },
-  "license": "LGPL-2.1-only",
   "dependencies": {
     "@prisma/client": "^4.13.0",
     "tsconfig": "workspace:^"

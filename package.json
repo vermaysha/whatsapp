@@ -1,0 +1,45 @@
+{
+  "name": "@vermaysha/whatsapp-gateway",
+  "version": "1.0.0",
+  "description": "Whatsapp Gateway",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "db:migrate:deploy": "turbo run db:migrate:deploy",
+    "db:push": "turbo run db:push",
+    "db:seed": "turbo run db:seed",
+    "generate": "turbo run generate"
+  },
+  "prisma": {
+    "schema": "packages/database/prisma/schema.prisma",
+    "seed": "tsx packages/database/src/seed.ts"
+  },
+  "keywords": [
+    "whatsapp",
+    "whatsapp-api",
+    "whatsapp-gateway"
+  ],
+  "author": {
+    "name": "Ashary Vermaysha",
+    "email": "vermaysha@gmail.com"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "tsx": "^3.12.7",
+    "turbo": "^1.9.3"
+  },
+  "engines": {
+    "node": ">=16.8.0"
+  },
+  "repository": {
+    "url": "https://github.com/vermaysha/whatsapp.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/vermaysha/whatsapp#readme",
+  "bugs": {
+    "url": "https://github.com/vermaysha/whatsapp/issues",
+    "email": "vermaysha@gmail.com"
+  }
+}
