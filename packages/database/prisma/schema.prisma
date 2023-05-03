@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  username  String    @unique
+  email     String    @unique
+  password  String
+  firstName String
+  lastName  String?
+  sex       Sex?
+  avatar    String?
+  birthday  DateTime? @db.Date
+  device    Device[]
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+model Device {
+  id                    String          @id @default(cuid())
+  name                  String
+  description           String?
+  type                  DeviceType      @default(auto)
+  status                DeviceStatus    @default(close)
+  lastDisconnectCode    Int?
+  lastDisconnectMessage String?
+  qr                    String?         @db.Text()
+  user                  User            @relation(fields: [userId], references: [id])
+  createdAt             DateTime
+  updatedAt             DateTime
+  session               DeviceSession[]
+  userId                String
+}
+
+model DeviceSession {
+  id        String   @id @default(cuid())
+  key       String
+  session   String   @db.Text
+  createdAt DateTime
+  updatedAt DateTime
+  device    Device?  @relation(fields: [deviceId], references: [id])
+  deviceId  String?
+
+  @@unique([key, deviceId])
+  @@index([deviceId])
+}
+
+enum Sex {
+  female
+  male
+}
+
+enum DeviceType {
+  auto
+  ubuntu
+  macOs
+  windows
+}
+
+enum DeviceStatus {
+  open
+  connecting
+  receiving_qr
+  close
+  logged_out
+}
